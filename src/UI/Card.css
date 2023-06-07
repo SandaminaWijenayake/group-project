@@ -1,0 +1,30 @@
+.cardContainer {
+  background-color: #fdf9e8;
+  width: 85%;
+  margin: 0 auto;
+  border: solid #e49d7f 1px;
+  border-radius: 5px;
+  margin-top: 35px;
+}
+
+.cardName h1 {
+  margin: 10px 0 0 0;
+}
+
+.cardName p {
+  margin: 5px 0;
+}
+
+.cardDetails h4 {
+  margin: 5px 0;
+}
+
+.cardDetails {
+  margin: 20px 0;
+}
+
+.cardBottom {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+}

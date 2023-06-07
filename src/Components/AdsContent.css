@@ -1,0 +1,43 @@
+.mainContainer {
+  width: 65%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  display: flex;
+  border-radius: 12px;
+  margin-top: 60px;
+}
+
+.adsContent {
+  width: 73%;
+}
+
+.filterPanel {
+  width: 27%;
+  border-right: solid #dfdfdf 1px;
+}
+
+.adsClear {
+  display: flex;
+  justify-content: right;
+  margin-right: 15px;
+}
+
+.adsClear p {
+  margin: 15px 0px 0px 0px;
+}
+
+.adsSort {
+  margin: 15px;
+}
+
+.adsSort h3 {
+  margin: 0 0 10px 0;
+}
+
+.adsMaleFemale {
+  margin: 15px;
+}
+
+.adsMaleFemale div {
+  display: flex;
+}
