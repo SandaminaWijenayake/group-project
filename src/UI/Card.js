@@ -19,16 +19,14 @@ function Card() {
               <Grid item xs={4}>
                 <h4>Sinhalese</h4>
               </Grid>
-              <Grid item xs={4}>
-                <h4>Bodu govi</h4>
-              </Grid>
+
               <Grid item xs={4}>
                 <h4>5'5</h4>
               </Grid>
               <Grid item xs={4}>
                 <h4>Buddist</h4>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={8}>
                 <h4>Software Engineer</h4>
               </Grid>
             </Grid>
