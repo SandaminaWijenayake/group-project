@@ -1,10 +1,6 @@
 .mainContainer {
-  width: 65%;
-  margin: 0 auto;
-  background-color: #ffffff;
-  display: flex;
-  border-radius: 12px;
   margin-top: 60px;
+  display: flex;
 }
 
 .adsContent {

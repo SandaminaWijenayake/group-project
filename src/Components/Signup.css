@@ -1,0 +1,18 @@
+.container {
+  position: relative;
+  width: 30%;
+  /* border-radius: 6px; */
+  padding: 30px;
+  /* margin: 0 15px; */
+  background-color: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
+}
+
+.container form {
+  margin-top: 16px;
+}
+
+.fieldmargin {
+  margin-bottom: 20px;
+}

@@ -8,6 +8,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ManIcon from "@mui/icons-material/Man";
 import WomanIcon from "@mui/icons-material/Woman";
+import SectionCard from "../UI/SectionCard";
 
 const options = [
   { label: "Last First", id: 1 },
@@ -16,7 +17,7 @@ const options = [
 
 function AdsContent() {
   return (
-    <div className="mainContainer">
+    <SectionCard className="mainContainer">
       <div className="filterPanel">
         <div className="adsClear">
           <p>Clear All</p>
@@ -128,7 +129,7 @@ function AdsContent() {
         <Card />
         <Card />
       </div>
-    </div>
+    </SectionCard>
   );
 }
 
