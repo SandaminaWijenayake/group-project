@@ -59,7 +59,7 @@ const NavBar = () => {
                 marginLeft: " 100px",
               }}
             >
-              Kapuva.lk
+              Kapuwa.lk
             </Typography>
           </Link>
 

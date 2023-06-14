@@ -61,24 +61,23 @@ function Login() {
               control={<Checkbox name="checkedB" color="primary" />}
               label="Remember me"
             />
-            <Link to={"/Signup"}>
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                style={btnstyle}
-                fullWidth
-              >
-                Sign in
-              </Button>
-            </Link>
+
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              style={btnstyle}
+              fullWidth
+            >
+              Sign in
+            </Button>
 
             <Typography>
               <Link href="#">Forgot password ?</Link>
             </Typography>
 
             <Typography>
-              Do you have an account ?<Link href="#">Sign Up </Link>
+              Do you have an account ?<Link to={"/Signup"}>Sign Up </Link>
             </Typography>
           </Paper>
         </Grid>
