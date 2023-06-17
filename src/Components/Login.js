@@ -77,7 +77,7 @@ function Login() {
             </Typography>
 
             <Typography>
-              Do you have an account ?<Link to={"/Signup"}>Sign Up </Link>
+              Don't you have an account?<Link to={"/Signup"}>Sign Up </Link>
             </Typography>
           </Paper>
         </Grid>
