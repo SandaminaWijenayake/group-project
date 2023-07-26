@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "../UI/Card";
 import "./AdsContent.css";
 import { Autocomplete, TextField, Typography } from "@mui/material";
@@ -15,7 +15,7 @@ const options = [
   { label: "Oldest First", id: 2 },
 ];
 
-function AdsContent() {
+const AdsContent = () => {
   return (
     <SectionCard className="mainContainer">
       <div className="filterPanel">
@@ -131,6 +131,6 @@ function AdsContent() {
       </div>
     </SectionCard>
   );
-}
+};
 
 export default AdsContent;

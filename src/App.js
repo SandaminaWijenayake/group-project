@@ -6,23 +6,27 @@ import GlobeStateProvider from "./GlobleState/GlobleState";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import UserCardFull from "./Components/UserCardFull";
+import CoverPage from "./Components/coverpage";
 
-function App() {
+const App = () => {
   return (
     <GlobeStateProvider>
       <Router>
         <div className="App">
-          <NavBar />
           <Routes>
-            <Route path="/" element={<AdsContent />} />
+            <Route path="/" element={<CoverPage />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
-            <Route path={"/Card/"} element={<UserCardFull />} />
+            <Route element={<NavBar />}>
+              <Route path="/home" element={<AdsContent />} />
+
+              <Route path={"/Card/"} element={<UserCardFull />} />
+            </Route>
           </Routes>
         </div>
       </Router>
     </GlobeStateProvider>
   );
-}
+};
 
 export default App;

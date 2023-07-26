@@ -54,6 +54,7 @@ const Signup = () => {
   const [region, setRegion] = useState("");
   const [ethinity, setEthinity] = useState(ethinityOptions[0]);
   const [civilState, setCivilState] = useState(civilStateOptions[1]);
+  const [height, setHeight] = useState("");
 
   const userCollection = collection(db, "users");
 
@@ -75,6 +76,7 @@ const Signup = () => {
         region: region,
         ethinity: ethinity,
         civilState: civilState,
+        height: height,
       });
     } catch (err) {
       console.error(err);
@@ -208,7 +210,13 @@ const Signup = () => {
         </div>
 
         <div className="fieldmargin">
-          <TextField label="Height" placeholder="Height" fullWidth required />
+          <TextField
+            label="Height"
+            placeholder="Height"
+            fullWidth
+            required
+            onChange={(e) => setHeight(e.target.value)}
+          />
         </div>
         <div className="fieldmargin">
           <TextField

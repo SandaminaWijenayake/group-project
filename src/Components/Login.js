@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Grid,
   Paper,
@@ -12,13 +12,18 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import "./Login.css";
 import SectionCard from "../UI/SectionCard";
-import { Link } from "react-router-dom";
-// import { auth } from "../config/firebase";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../config/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { GlobleContext } from "../GlobleState/GlobleState";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const { setLoggedIn, loggedIn } = useContext(GlobleContext);
 
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px 0" };
@@ -31,12 +36,17 @@ const Login = () => {
     marginTop: "60px",
   };
   const signin = async (e) => {
-    // e.preventDefault();
-    // try {
-    //   await createUserWithEmailAndPassword(auth, email, password);
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password).then(() => {
+        setLoggedIn(true);
+      });
+    } catch (err) {
+      console.error(err);
+    }
+    {
+      loggedIn && navigate("/home");
+    }
   };
 
   return (
