@@ -15,7 +15,7 @@ import SectionCard from "../UI/SectionCard";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { GlobleContext } from "../GlobleState/GlobleState";
+// import { GlobleContext } from "../GlobleState/GlobleState";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { setLoggedIn, loggedIn } = useContext(GlobleContext);
+  // const { setLoggedIn, loggedIn } = useContext(GlobleContext);
 
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px 0" };
@@ -39,14 +39,13 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password).then(() => {
-        setLoggedIn(true);
+        // setLoggedIn(true);
       });
     } catch (err) {
       console.error(err);
     }
-    {
-      loggedIn && navigate("/home");
-    }
+
+    navigate("/home");
   };
 
   return (
