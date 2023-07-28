@@ -12,8 +12,11 @@ import { useState } from "react";
 
 const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(null);
+  const [currentUSer, setCurrentUser] = useState();
   return (
-    <GlobleContext.Provider value={{ isSignedIn, setIsSignedIn }}>
+    <GlobleContext.Provider
+      value={{ isSignedIn, setIsSignedIn, currentUSer, setCurrentUser }}
+    >
       <Router>
         <div className="App">
           <Routes>

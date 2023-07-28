@@ -102,7 +102,7 @@ const Signup = () => {
         }).then(setMessageUserCreated("User Created"));
         // setError(true);
         setIsSignedIn(true);
-        navigate("/home");
+        navigate("/Login");
       } catch (err) {
         console.error(err);
       }

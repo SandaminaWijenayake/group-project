@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Grid,
   Paper,
@@ -23,10 +23,30 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessageAuth] = useState("");
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
-  const { setIsSignedIn } = useContext(GlobleContext);
+  const { setIsSignedIn, setCurrentUser, currentUser } =
+    useContext(GlobleContext);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(
+      (user) => {
+        if (user) {
+          setIsSignedIn(true);
+          navigate("/home");
+        } else {
+          setIsSignedIn(false);
+          setIsLoading(false);
+        }
+      },
+      (err) => {
+        setIsLoading(false);
+      }
+    );
+    return unsubscribe;
+  }, []);
 
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px 0" };
@@ -56,6 +76,9 @@ const Login = () => {
   const cloesThePropt = () => {
     setError(false);
   };
+  if (isLoading) {
+    return <div className="loadingPage">loading...</div>;
+  }
 
   return (
     <>
