@@ -15,15 +15,18 @@ import SectionCard from "../UI/SectionCard";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-// import { GlobleContext } from "../GlobleState/GlobleState";
+import Message from "./Message";
+import { GlobleContext } from "../GlobleState/GlobleState";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessageAuth] = useState("");
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
-  // const { setLoggedIn, loggedIn } = useContext(GlobleContext);
+  const { setIsSignedIn } = useContext(GlobleContext);
 
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px 0" };
@@ -37,80 +40,87 @@ const Login = () => {
   };
   const signin = async (e) => {
     e.preventDefault();
+
+    // console.log(isSignedIn);
     try {
-      await signInWithEmailAndPassword(auth, email, password).then(() => {
-        // setLoggedIn(true);
-      });
+      await signInWithEmailAndPassword(auth, email, password);
+      setIsSignedIn(true);
+      navigate("/home");
     } catch (err) {
       console.error(err);
+      setError(true);
+      setMessageAuth("invalid user name or password");
     }
+  };
 
-    navigate("/home");
+  const cloesThePropt = () => {
+    setError(false);
   };
 
   return (
-    <form onSubmit={signin}>
-      <SectionCard className="stylePadding">
-        <div className="bg-img">
-          <Grid>
-            <Paper sx={paperStyle}>
-              <Grid align="center">
-                <Avatar style={avatarStyle}>
-                  <LoginIcon />
-                </Avatar>
-                <h2 style={{ marginBottom: 20 }}>Sign In</h2>
-              </Grid>
+    <>
+      {error && (
+        <Message messageEmail={message} cloesThePropt={cloesThePropt} />
+      )}
+      <form onSubmit={signin}>
+        <SectionCard className="stylePadding">
+          <div className="bg-img">
+            <Grid>
+              <Paper sx={paperStyle}>
+                <Grid align="center">
+                  <Avatar style={avatarStyle}>
+                    <LoginIcon />
+                  </Avatar>
+                  <h2 style={{ marginBottom: 20 }}>Sign In</h2>
+                </Grid>
 
-              <div className="fieldmargin">
-                <TextField
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  label="Email"
-                  placeholder="Enter email"
-                  fullWidth
-                  required
+                <div className="fieldmargin">
+                  <TextField
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    label="Email"
+                    placeholder="Enter email"
+                    fullWidth
+                    required
+                  />
+                </div>
+
+                <div className="fieldmargin">
+                  <TextField
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    label="Password"
+                    placeholder="Enter password"
+                    type="password"
+                    fullWidth
+                    required
+                  />
+                </div>
+
+                <FormControlLabel
+                  control={<Checkbox name="checkedB" color="primary" />}
+                  label="Remember me"
                 />
-              </div>
 
-              <div className="fieldmargin">
-                <TextField
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  label="Password"
-                  placeholder="Enter password"
-                  type="password"
+                <Button
+                  type="submit"
+                  color="primary"
+                  variant="contained"
+                  style={btnstyle}
                   fullWidth
-                  required
-                />
-              </div>
+                >
+                  Sign in
+                </Button>
 
-              <FormControlLabel
-                control={<Checkbox name="checkedB" color="primary" />}
-                label="Remember me"
-              />
-
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                style={btnstyle}
-                fullWidth
-              >
-                Sign in
-              </Button>
-
-              <Typography>
-                <Link href="#">Forgot password ?</Link>
-              </Typography>
-
-              <Typography>
-                Don't you have an account?<Link to={"/Signup"}>Sign Up </Link>
-              </Typography>
-            </Paper>
-          </Grid>
-        </div>
-      </SectionCard>
-    </form>
+                <Typography>
+                  Don't you have an account?<Link to={"/Signup"}>Sign Up </Link>
+                </Typography>
+              </Paper>
+            </Grid>
+          </div>
+        </SectionCard>
+      </form>
+    </>
   );
 };
 export default Login;

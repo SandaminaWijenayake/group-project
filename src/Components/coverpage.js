@@ -12,7 +12,7 @@ const CoverPage = () => {
     <div className="cover-page">
       <Confetti wind={-0.1} width={width} height={height} />
       <div className="animation">
-        <h1 class="line-1 anim-typewriter"> Where Two Hearts Become One</h1>
+        <h1 className="line-1 anim-typewriter"> Where Two Hearts Become One</h1>
       </div>
       <div className="button-container">
         <button

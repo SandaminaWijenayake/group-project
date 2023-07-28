@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import {
-  Button,
   CssBaseline,
   Typography,
   Toolbar,
@@ -17,18 +16,11 @@ import { GlobleContext } from "../GlobleState/GlobleState";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
-
-const button = {
-  background: "orange",
-  color: "black",
-  ":hover": {
-    bgcolor: "#fc9300",
-    color: "#ffff",
-  },
-};
+import { signOut } from "firebase/auth";
+import { auth } from "../config/firebase";
 
 const NavBar = () => {
-  const { loggedIn } = useContext(GlobleContext);
+  const { setIsSignedIn } = useContext(GlobleContext);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -39,6 +31,16 @@ const NavBar = () => {
     setAnchorEl(null);
   };
 
+  const signOutHandler = () => {
+    signOut(auth)
+      .then(() => {
+        setIsSignedIn(false);
+        console.log("signout");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <CssBaseline />
@@ -65,30 +67,17 @@ const NavBar = () => {
 
           <Divider />
           <List sx={{ marginLeft: "auto", padding: "0px 100px" }}>
-            <Link to="/Login">
-              <Button
-                // sx={button}
-                sx={button}
-                variant="contained"
-                size="large"
-                // sx={{ marginLeft: "10px" }}
-              >
-                Sign-in/Log-in
-              </Button>
-            </Link>
-
             <span>
-              {loggedIn && (
-                <MenuIcon
-                  fontSize="large"
-                  sx={{ color: "white" }}
-                  id="fade-button"
-                  aria-controls={open ? "fade-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                />
-              )}
+              <MenuIcon
+                fontSize="large"
+                sx={{ color: "white" }}
+                id="fade-button"
+                aria-controls={open ? "fade-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+              />
+
               <Menu
                 id="fade-menu"
                 MenuListProps={{
@@ -101,7 +90,12 @@ const NavBar = () => {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <Link
+                  to="/Login"
+                  style={{ textDecoration: "none", color: "red" }}
+                >
+                  <MenuItem onClick={signOutHandler}>Logout</MenuItem>{" "}
+                </Link>
               </Menu>
             </span>
           </List>
