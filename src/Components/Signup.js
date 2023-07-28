@@ -166,6 +166,7 @@ const Signup = () => {
               placeholder="Enter email"
               fullWidth
               required
+              type="email"
             />
           </div>
           <div className="fieldmargin">
