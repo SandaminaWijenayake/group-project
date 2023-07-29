@@ -7,7 +7,7 @@ import {
   List,
   AppBar,
 } from "@mui/material";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { GlobleContext } from "../GlobleState/GlobleState";
 
@@ -114,7 +114,6 @@ const NavBar = () => {
           </List>
         </Toolbar>
       </AppBar>
-      <Outlet />
     </>
   );
 };

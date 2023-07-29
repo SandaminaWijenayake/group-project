@@ -1,7 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdsContent from "./Components/AdsContent";
-import NavBar from "./Components/NavBar";
 import { GlobleContext } from "./GlobleState/GlobleState";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
@@ -11,6 +10,7 @@ import Protected from "./Components/Protected";
 import { useState } from "react";
 import EditProfile from "./Components/EditProfile";
 import AboutUs from "./Components/AboutUs";
+import Layout from "./Components/Layout";
 
 const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(null);
@@ -25,7 +25,8 @@ const App = () => {
             <Route path="/" element={<CoverPage />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
-            <Route element={<NavBar />}>
+
+            <Route element={<Layout />}>
               <Route
                 path="/home"
                 element={

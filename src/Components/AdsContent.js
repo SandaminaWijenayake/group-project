@@ -33,125 +33,127 @@ const AdsContent = () => {
     return () => {};
   }, []);
   return (
-    <SectionCard className="mainContainer">
-      <div className="filterPanel">
-        <div className="adsClear">
-          <p>Clear All</p>
-        </div>
-        <div className="adsSort">
-          <h3>Sort By</h3>
-          <Autocomplete
-            id="size-small-standard"
-            size="small"
-            options={options}
-            defaultValue={options[0]}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard"
-                placeholder="Last First"
-              />
-            )}
-          />
-        </div>
-        <div className="adsMaleFemale">
-          <h4>I'm looking for</h4>
-          <div>
-            {<ManIcon fontSize="large" />}
-            {<WomanIcon fontSize="large" />}
+    <SectionCard className="AdsWidth">
+      <div className="mainContainer">
+        <div className="filterPanel">
+          <div className="adsClear">
+            <p>Clear All</p>
           </div>
+          <div className="adsSort">
+            <h3>Sort By</h3>
+            <Autocomplete
+              id="size-small-standard"
+              size="small"
+              options={options}
+              defaultValue={options[0]}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="standard"
+                  placeholder="Last First"
+                />
+              )}
+            />
+          </div>
+          <div className="adsMaleFemale">
+            <h4>I'm looking for</h4>
+            <div>
+              {<ManIcon fontSize="large" />}
+              {<WomanIcon fontSize="large" />}
+            </div>
+          </div>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Age</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3a-content"
+              id="panel3a-header"
+            >
+              <Typography>Region / District</Typography>
+            </AccordionSummary>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+            >
+              <Typography>Ethnicity</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+            >
+              <Typography>Religion</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+            >
+              <Typography>Civil Status</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>{" "}
         </div>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography>Age</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3a-content"
-            id="panel3a-header"
-          >
-            <Typography>Region / District</Typography>
-          </AccordionSummary>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography>Ethnicity</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography>Religion</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography>Civil Status</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>{" "}
-      </div>
 
-      <div className="adsContent">
-        {data.map((ele) => {
-          return (
-            console.log(ele.region),
-            (
-              <Card
-                firstName={ele.firstName}
-                age={ele.age}
-                ethinity={ele.ethinity.label}
-                region={ele.region}
-                height={ele.height}
-                Profession={ele.Profession}
-              />
-            )
-          );
-        })}
+        <div className="adsContent">
+          {data.map((ele) => {
+            return (
+              console.log(ele.region),
+              (
+                <Card
+                  firstName={ele.firstName}
+                  age={ele.age}
+                  ethinity={ele.ethinity.label}
+                  region={ele.region}
+                  height={ele.height}
+                  Profession={ele.Profession}
+                />
+              )
+            );
+          })}
+        </div>
       </div>
     </SectionCard>
   );

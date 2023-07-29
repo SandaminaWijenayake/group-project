@@ -27,8 +27,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { setIsSignedIn, setCurrentUser, currentUser } =
-    useContext(GlobleContext);
+  const { setIsSignedIn } = useContext(GlobleContext);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(

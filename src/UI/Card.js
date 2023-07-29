@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Grid, Box, Container } from "@mui/material";
 import "./Card.css";
 import { Link } from "react-router-dom";

@@ -1,6 +1,15 @@
 .mainContainer {
-  margin-top: 60px;
+  margin-top: 80px;
   display: flex;
+}
+
+.AdsWidth {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 3rem;
 }
 
 .adsContent {
