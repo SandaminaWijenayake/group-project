@@ -99,7 +99,6 @@ const AboutUs = () => {
             </Grid>
           </Grid>
         </Box>
-        {/* <Footer /> */}
       </SectionCard>
     </>
   );

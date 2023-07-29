@@ -12,8 +12,7 @@ footer .content {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-footer .content p,
-a {
+footer p {
   color: #fff;
 }
 footer .content .box {
@@ -63,9 +62,9 @@ footer .bottom {
   color: #d9d9d9;
   padding: 0 40px 5px 0;
 }
-footer .bottom a {
+/* footer .bottom a {
   color: rgb(255, 255, 255);
-}
+} */
 footer a {
   transition: all 0.3s ease;
   color: rgba(13, 110, 253);

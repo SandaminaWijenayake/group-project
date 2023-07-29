@@ -135,7 +135,10 @@ const Login = () => {
                 </Button>
 
                 <Typography>
-                  Don't you have an account?<Link to={"/Signup"}>Sign Up </Link>
+                  Don't you have an account?
+                  <Link style={{ textDecoration: "none" }} to={"/Signup"}>
+                    Sign Up{" "}
+                  </Link>
                 </Typography>
               </Paper>
             </Grid>

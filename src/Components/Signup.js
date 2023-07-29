@@ -135,7 +135,9 @@ const Signup = () => {
           </Grid>
           <Typography>
             Already have an account?
-            <Link to={"/Login"}>Login</Link>
+            <Link to={"/Login"} style={{ textDecoration: "none" }}>
+              Login
+            </Link>
           </Typography>
           <div className="fieldmargin">
             <TextField
