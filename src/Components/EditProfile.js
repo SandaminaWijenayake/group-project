@@ -57,165 +57,166 @@ const EditProfile = () => {
   return (
     <>
       <SectionCard className="AaboutUsMargin">
-        <Container>
-          <Box sx={{ width: "100%" }}>
-            <Grid
-              container
-              rowSpacing={1}
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-            >
-              <Grid item xs={12}>
-                <Item>
-                  <Box sx={editProfileItems}>
-                    <Typography>First Name</Typography>
-                    <TextField
-                      size="small"
-                      label="firstName"
-                      placeholder="firstName"
-                      sx={{ width: "60%" }}
-                      //   required
-                      //   onChange={(e) => setLastName(e.target.value)}
-                      //   value={lastName}
-                    />
-                  </Box>
-                </Item>
-              </Grid>
-              <Grid item xs={12}>
-                <Item>
-                  <Box sx={editProfileItems}>
-                    <Typography>Last name</Typography>
-                    <TextField
-                      size="small"
-                      label="lastName"
-                      placeholder="lastName"
-                      sx={{ width: "60%" }}
-                    />
-                  </Box>
-                </Item>
-              </Grid>
-              <Grid item xs={12}>
-                <Item>
-                  <Box sx={editProfileItems}>
-                    <Typography>Age</Typography>
-                    <TextField
-                      size="small"
-                      label="Age"
-                      placeholder="Age"
-                      sx={{ width: "60%" }}
-                    />
-                  </Box>
-                </Item>
-              </Grid>
-              <Grid item xs={12}>
-                <Item>
-                  <Box sx={editProfileItems}>
-                    <Typography>Religen</Typography>
-                    <Autocomplete
-                      // onChange={(e, value) => {
-                      //   setReligion(value);
-                      // }}
-                      // value={religion}
-                      // required
-                      disablePortal
-                      id="combo-box-demo2"
-                      options={religionOptions}
-                      label="Religen"
-                      sx={{ width: "60%" }}
-                      size="small"
-                      renderInput={(params) => (
-                        <TextField {...params} label="Religen" />
-                      )}
-                    />
-                  </Box>
-                </Item>
-              </Grid>
-              <Grid item xs={12}>
-                <Item>
-                  <Box sx={editProfileItems}>
-                    <Typography>Gender</Typography>
-                    <Autocomplete
-                      // onChange={(e, value) => {
-                      //   setGender(value);
-                      // }}
-                      // value={gender}
-                      // required
-                      sx={{ width: "60%" }}
-                      size="small"
-                      disablePortal
-                      id="combo-box-demo1"
-                      options={genderOptions}
-                      label="Gender"
-                      renderInput={(params) => (
-                        <TextField {...params} label="Gender" />
-                      )}
-                    />
-                  </Box>
-                </Item>
-              </Grid>
-              <Grid item xs={12}>
-                <Item>
-                  <Box sx={editProfileItems}>
-                    <Typography>Height</Typography>
-                    <TextField
-                      size="small"
-                      label="Height"
-                      placeholder="Height"
-                      sx={{ width: "60%" }}
-                    />
-                  </Box>
-                </Item>
-              </Grid>
-              <Grid item xs={12}>
-                <Item>
-                  <Box sx={editProfileItems}>
-                    <Typography>Ethnicity</Typography>
-                    <Autocomplete
-                      // onChange={(e, value) => {
-
-                      //   setEthinity(value);
-                      // }}
-                      // value={ethinity}
-                      // required
-                      sx={{ width: "60%" }}
-                      size="small"
-                      disablePortal
-                      id="combo-box-demo3"
-                      options={ethinityOptions}
-                      label="Ethinity"
-                      renderInput={(params) => (
-                        <TextField {...params} label="Ethinity" />
-                      )}
-                    />
-                  </Box>
-                </Item>
-              </Grid>
-              <Grid item xs={12}>
-                <Item>
-                  <Box sx={editProfileItems}>
-                    <Typography>Civil State</Typography>
-                    <Autocomplete
-                      // onChange={(e, value) => {
-
-                      //   setEthinity(value);
-                      // }}
-                      // value={ethinity}
-                      // required
-                      sx={{ width: "60%" }}
-                      size="small"
-                      disablePortal
-                      id="combo-box-demo3"
-                      options={civilStateOptions}
-                      label="civilState"
-                      renderInput={(params) => (
-                        <TextField {...params} label="civilState" />
-                      )}
-                    />
-                  </Box>
-                </Item>
-              </Grid>
+        <Typography variant="h3" align="center" sx={{ marginBottom: "50px" }}>
+          Edit Profile
+        </Typography>
+        <Box sx={{ width: "100%" }}>
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          >
+            <Grid item xs={12}>
+              <Item>
+                <Box sx={editProfileItems}>
+                  <Typography>First Name</Typography>
+                  <TextField
+                    size="small"
+                    label="firstName"
+                    placeholder="firstName"
+                    sx={{ width: "60%" }}
+                    //   required
+                    //   onChange={(e) => setLastName(e.target.value)}
+                    //   value={lastName}
+                  />
+                </Box>
+              </Item>
             </Grid>
-          </Box>
-        </Container>
+            <Grid item xs={12}>
+              <Item>
+                <Box sx={editProfileItems}>
+                  <Typography>Last name</Typography>
+                  <TextField
+                    size="small"
+                    label="lastName"
+                    placeholder="lastName"
+                    sx={{ width: "60%" }}
+                  />
+                </Box>
+              </Item>
+            </Grid>
+            <Grid item xs={12}>
+              <Item>
+                <Box sx={editProfileItems}>
+                  <Typography>Age</Typography>
+                  <TextField
+                    size="small"
+                    label="Age"
+                    placeholder="Age"
+                    sx={{ width: "60%" }}
+                  />
+                </Box>
+              </Item>
+            </Grid>
+            <Grid item xs={12}>
+              <Item>
+                <Box sx={editProfileItems}>
+                  <Typography>Religen</Typography>
+                  <Autocomplete
+                    // onChange={(e, value) => {
+                    //   setReligion(value);
+                    // }}
+                    // value={religion}
+                    // required
+                    disablePortal
+                    id="combo-box-demo2"
+                    options={religionOptions}
+                    label="Religen"
+                    sx={{ width: "60%" }}
+                    size="small"
+                    renderInput={(params) => (
+                      <TextField {...params} label="Religen" />
+                    )}
+                  />
+                </Box>
+              </Item>
+            </Grid>
+            <Grid item xs={12}>
+              <Item>
+                <Box sx={editProfileItems}>
+                  <Typography>Gender</Typography>
+                  <Autocomplete
+                    // onChange={(e, value) => {
+                    //   setGender(value);
+                    // }}
+                    // value={gender}
+                    // required
+                    sx={{ width: "60%" }}
+                    size="small"
+                    disablePortal
+                    id="combo-box-demo1"
+                    options={genderOptions}
+                    label="Gender"
+                    renderInput={(params) => (
+                      <TextField {...params} label="Gender" />
+                    )}
+                  />
+                </Box>
+              </Item>
+            </Grid>
+            <Grid item xs={12}>
+              <Item>
+                <Box sx={editProfileItems}>
+                  <Typography>Height</Typography>
+                  <TextField
+                    size="small"
+                    label="Height"
+                    placeholder="Height"
+                    sx={{ width: "60%" }}
+                  />
+                </Box>
+              </Item>
+            </Grid>
+            <Grid item xs={12}>
+              <Item>
+                <Box sx={editProfileItems}>
+                  <Typography>Ethnicity</Typography>
+                  <Autocomplete
+                    // onChange={(e, value) => {
+
+                    //   setEthinity(value);
+                    // }}
+                    // value={ethinity}
+                    // required
+                    sx={{ width: "60%" }}
+                    size="small"
+                    disablePortal
+                    id="combo-box-demo3"
+                    options={ethinityOptions}
+                    label="Ethinity"
+                    renderInput={(params) => (
+                      <TextField {...params} label="Ethinity" />
+                    )}
+                  />
+                </Box>
+              </Item>
+            </Grid>
+            <Grid item xs={12}>
+              <Item>
+                <Box sx={editProfileItems}>
+                  <Typography>Civil State</Typography>
+                  <Autocomplete
+                    // onChange={(e, value) => {
+
+                    //   setEthinity(value);
+                    // }}
+                    // value={ethinity}
+                    // required
+                    sx={{ width: "60%" }}
+                    size="small"
+                    disablePortal
+                    id="combo-box-demo3"
+                    options={civilStateOptions}
+                    label="civilState"
+                    renderInput={(params) => (
+                      <TextField {...params} label="civilState" />
+                    )}
+                  />
+                </Box>
+              </Item>
+            </Grid>
+          </Grid>
+        </Box>
       </SectionCard>
     </>
   );
