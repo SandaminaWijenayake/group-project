@@ -9,6 +9,8 @@ import UserCardFull from "./Components/UserCardFull";
 import CoverPage from "./Components/coverpage";
 import Protected from "./Components/Protected";
 import { useState } from "react";
+import EditProfile from "./Components/EditProfile";
+import AboutUs from "./Components/AboutUs";
 
 const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(null);
@@ -38,6 +40,22 @@ const App = () => {
                 element={
                   <Protected isSignedIn={isSignedIn}>
                     <UserCardFull />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/EditProfile"
+                element={
+                  <Protected isSignedIn={isSignedIn}>
+                    <EditProfile />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/AboutUs"
+                element={
+                  <Protected isSignedIn={isSignedIn}>
+                    <AboutUs />
                   </Protected>
                 }
               />

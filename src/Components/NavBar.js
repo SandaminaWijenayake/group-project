@@ -7,7 +7,7 @@ import {
   List,
   AppBar,
 } from "@mui/material";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { GlobleContext } from "../GlobleState/GlobleState";
 
@@ -22,6 +22,8 @@ import { auth } from "../config/firebase";
 const NavBar = () => {
   const { setIsSignedIn } = useContext(GlobleContext);
 
+  const navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -31,7 +33,18 @@ const NavBar = () => {
     setAnchorEl(null);
   };
 
+  const editProfileHandler = () => {
+    navigate("/EditProfile");
+    setAnchorEl(null);
+  };
+
+  const aboutUsHandler = () => {
+    navigate("/AboutUs");
+    setAnchorEl(null);
+  };
+
   const signOutHandler = () => {
+    setAnchorEl(null);
     signOut(auth)
       .then(() => {
         setIsSignedIn(false);
@@ -88,13 +101,13 @@ const NavBar = () => {
                 onClose={handleClose}
                 TransitionComponent={Fade}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={editProfileHandler}>Profile</MenuItem>
+                <MenuItem onClick={aboutUsHandler}>About us</MenuItem>
                 <Link
                   to="/Login"
                   style={{ textDecoration: "none", color: "red" }}
                 >
-                  <MenuItem onClick={signOutHandler}>Logout</MenuItem>{" "}
+                  <MenuItem onClick={signOutHandler}>Logout</MenuItem>
                 </Link>
               </Menu>
             </span>

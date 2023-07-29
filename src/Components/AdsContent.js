@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Card from "../UI/Card";
 import "./AdsContent.css";
 import { Autocomplete, TextField, Typography } from "@mui/material";
@@ -9,6 +9,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ManIcon from "@mui/icons-material/Man";
 import WomanIcon from "@mui/icons-material/Woman";
 import SectionCard from "../UI/SectionCard";
+import usersdata from "./userData";
 
 const options = [
   { label: "Last First", id: 1 },
@@ -16,6 +17,21 @@ const options = [
 ];
 
 const AdsContent = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    if (usersdata.length === 0) {
+      setTimeout(() => {
+        setData(usersdata);
+      }, 1000);
+    }
+  }, []);
+
+  useEffect(() => {
+    // window.location.reload();
+
+    return () => {};
+  }, []);
   return (
     <SectionCard className="mainContainer">
       <div className="filterPanel">
@@ -121,13 +137,21 @@ const AdsContent = () => {
       </div>
 
       <div className="adsContent">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {data.map((ele) => {
+          return (
+            console.log(ele.region),
+            (
+              <Card
+                firstName={ele.firstName}
+                age={ele.age}
+                ethinity={ele.ethinity.label}
+                region={ele.region}
+                height={ele.height}
+                Profession={ele.Profession}
+              />
+            )
+          );
+        })}
       </div>
     </SectionCard>
   );
