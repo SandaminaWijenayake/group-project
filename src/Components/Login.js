@@ -60,7 +60,6 @@ const Login = () => {
   const signin = async (e) => {
     e.preventDefault();
 
-    // console.log(isSignedIn);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setIsSignedIn(true);

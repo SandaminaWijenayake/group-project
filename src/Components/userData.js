@@ -30,7 +30,7 @@ getDocs(colRef)
     snapshot.docs.forEach((doc) => {
       usersdata.push({ ...doc.data(), id: doc.id });
     });
-    console.log(usersdata);
+
     return usersdata;
   })
   .catch((err) => {

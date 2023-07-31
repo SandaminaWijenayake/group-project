@@ -48,7 +48,6 @@ const NavBar = () => {
     signOut(auth)
       .then(() => {
         setIsSignedIn(false);
-        console.log("signout");
       })
       .catch((err) => {
         console.log(err);

@@ -88,7 +88,6 @@ const Signup = () => {
           password
         );
         const user = result.user.uid;
-        console.log(user);
 
         setDoc(doc(db, "users", user), {
           firstName: firstName,

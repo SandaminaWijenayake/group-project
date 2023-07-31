@@ -87,7 +87,6 @@ const EditProfile = () => {
   const navigate = useNavigate();
   // let index = data.gender.id;
   // let newIndex = index - 1;
-  // console.log(newIndex);
 
   const [firstName, setFirstName] = useState(data.firstName);
   // useEffect(() => {
@@ -144,17 +143,14 @@ const EditProfile = () => {
       console.log("err:" + err);
     }
     signOut(auth).then(navigate("/Login"));
-    console.log("signout");
-
-    console.log(user.uid);
   };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log("onSubmit");
+
     const user = auth.currentUser.uid;
     const docRef = doc(db, "users", user);
-    console.log("user");
+
     e.preventDefault();
     updateDoc(docRef, {
       firstName: firstName,
@@ -170,7 +166,6 @@ const EditProfile = () => {
     });
   };
 
-  console.log(firstName);
   return (
     <>
       <SectionCard className="AaboutUsMargin">

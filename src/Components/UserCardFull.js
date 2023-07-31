@@ -78,14 +78,7 @@ const UserCardFull = () => {
       </SectionCard>
       <SectionCard className="userCardPersonalInfor">
         <h1>Personal Information</h1>
-        <div
-          className="de  // data.filter((ele) => {
-  //   if (ele.id === id) {
-  //     console.log(ele);
-  //     return setFullData(ele);
-  //   }
-  // });tails"
-        >
+        <div>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container rowSpacing={1} columnSpacing={2}>
               <Grid item xs={6}>
@@ -95,7 +88,6 @@ const UserCardFull = () => {
                       <h3>Full Name</h3>
                     </div>
                     <div>
-                      {d.length !== 0 && console.log(d[0].firstName)}
                       <p>
                         {d.length !== 0 && d[0].firstName + " " + d[0].lastName}
                       </p>
