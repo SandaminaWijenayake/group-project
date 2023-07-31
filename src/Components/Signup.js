@@ -59,6 +59,7 @@ const Signup = () => {
   const [messageEmail, setMessageEmail] = useState("");
   const [messageUserCreated, setMessageUserCreated] = useState("");
   const [error, setError] = useState(false);
+  // const [userid, setUserid] = useState("");
 
   const { setIsSignedIn } = useContext(GlobleContext);
   const navigate = useNavigate();
@@ -82,24 +83,44 @@ const Signup = () => {
     }
     if (password.length >= 6 && email.includes("@") && email.includes(".com")) {
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
+        await createUserWithEmailAndPassword(auth, email, password).then(
+          (userCredential) => {
+            // Signed in
+
+            addDoc(userCollection, {
+              userid: userCredential.user.uid,
+              firstName: firstName,
+              lastName: lastName,
+              age: age,
+              gender: gender,
+              religion: religion,
+              Profession: Profession,
+              region: region,
+              ethinity: ethinity,
+              civilState: civilState,
+              height: height,
+            }).then(setMessageUserCreated("User Created"));
+            // setError(true);
+            setIsSignedIn(true);
+            navigate("/Login");
+
+            console.log(userCredential);
+            console.log(userCredential.user);
+            console.log(userCredential.user.uid);
+
+            // ...
+          }
+        );
       } catch (err) {
         console.error(err);
       }
 
+      // console.log(userid);
+
       try {
-        await addDoc(userCollection, {
-          firstName: firstName,
-          lastName: lastName,
-          age: age,
-          gender: gender,
-          religion: religion,
-          Profession: Profession,
-          region: region,
-          ethinity: ethinity,
-          civilState: civilState,
-          height: height,
-        }).then(setMessageUserCreated("User Created"));
+        await addDoc(userCollection, {}).then(
+          setMessageUserCreated("User Created")
+        );
         // setError(true);
         setIsSignedIn(true);
         navigate("/Login");
@@ -133,7 +154,7 @@ const Signup = () => {
             </Avatar>
             <h2 style={{ marginBottom: 20 }}>User Registration</h2>
           </Grid>
-          <Typography>
+          <Typography gutterBottom>
             Already have an account?
             <Link to={"/Login"} style={{ textDecoration: "none" }}>
               Login

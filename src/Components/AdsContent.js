@@ -23,6 +23,7 @@ const AdsContent = () => {
     if (usersdata.length === 0) {
       setTimeout(() => {
         setData(usersdata);
+        console.log(usersdata);
       }, 1000);
     }
   }, []);
@@ -134,24 +135,12 @@ const AdsContent = () => {
                 eget.
               </Typography>
             </AccordionDetails>
-          </Accordion>{" "}
+          </Accordion>
         </div>
 
         <div className="adsContent">
-          {data.map((ele) => {
-            return (
-              console.log(ele.region),
-              (
-                <Card
-                  firstName={ele.firstName}
-                  age={ele.age}
-                  ethinity={ele.ethinity.label}
-                  region={ele.region}
-                  height={ele.height}
-                  Profession={ele.Profession}
-                />
-              )
-            );
+          {data.map((item) => {
+            return <Card items={item} />;
           })}
         </div>
       </div>

@@ -104,6 +104,7 @@ const Login = () => {
                     placeholder="Enter email"
                     fullWidth
                     required
+                    type="email"
                   />
                 </div>
 

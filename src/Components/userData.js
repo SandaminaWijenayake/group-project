@@ -1,8 +1,8 @@
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../config/firebase";
 
 //collection ref
-const colRef = collection(db, 'users');
+const colRef = collection(db, "users");
 
 // let usersdata = [];
 // //get collections
