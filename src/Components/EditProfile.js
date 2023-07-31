@@ -16,6 +16,7 @@ import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { deleteUser, signOut } from "firebase/auth";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useNavigate } from "react-router";
+import Message from "./Message";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -70,6 +71,10 @@ const deleteIcon = {
 const EditProfile = () => {
   // const [userId, setUserId] = useState("");
   const [data, setData] = useState([]);
+  const [message, setMessageAuth] = useState("");
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
   const user = auth.currentUser;
 
   useEffect(() => {
@@ -130,6 +135,10 @@ const EditProfile = () => {
     data.region,
   ]);
 
+  const cloesThePropt = () => {
+    setError(false);
+  };
+
   const deleteUserHandler = async () => {
     const user = auth.currentUser;
     try {
@@ -163,11 +172,17 @@ const EditProfile = () => {
       ethinity: ethinity,
       civilState: civilState,
       height: height,
+    }).then(() => {
+      setError(true);
+      setMessageAuth("Account updated");
     });
   };
 
   return (
     <>
+      {error && (
+        <Message messageEmail={message} cloesThePropt={cloesThePropt} />
+      )}
       <SectionCard className="AaboutUsMargin">
         <Typography variant="h3" align="center" sx={{ marginBottom: "50px" }}>
           Edit Profile
