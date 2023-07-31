@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Container,
   Grid,
   Typography,
   Paper,
@@ -12,9 +11,11 @@ import {
 import SectionCard from "../UI/SectionCard";
 import { styled } from "@mui/material/styles";
 import "./EditProfile.css";
-import { db } from "../config/firebase";
-import { doc, setDoc, updateDoc } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "../config/firebase";
+import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import { deleteUser, signOut } from "firebase/auth";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { useNavigate } from "react-router";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -57,55 +58,119 @@ const editProfileItems = {
   color: "black",
 };
 
-const EditProfile = () => {
-  const [userId, setUserId] = useState("");
+const deleteIcon = {
+  marginLeft: "10px",
+  color: "rgba(219, 3, 3, 0.807)",
+  cursor: "pointer",
+  ":hover": {
+    color: "rgb(243, 85, 72)",
+  },
+};
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState(genderOptions[0]);
-  const [religion, setReligion] = useState(religionOptions[0]);
-  const [Profession, setProfession] = useState("");
-  const [region, setRegion] = useState("");
-  const [ethinity, setEthinity] = useState(ethinityOptions[0]);
-  const [civilState, setCivilState] = useState(civilStateOptions[1]);
-  const [height, setHeight] = useState("");
+const EditProfile = () => {
+  // const [userId, setUserId] = useState("");
+  const [data, setData] = useState([]);
+  const user = auth.currentUser;
 
   useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUserId(user.uid);
-        console.log(user.uid);
+    const docRef = doc(db, "users", user.uid);
 
-        // ...
-      } else {
-        // User is signed out
-        // ...
-      }
-    });
-  }, []);
+    getDoc(docRef)
+      .then((snapshot) => {
+        setData(snapshot.data());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [user.uid]);
 
-  const onSubmitHandler = (e) => {
-    const docRef = doc(db, "users", userId);
+  const navigate = useNavigate();
+  // let index = data.gender.id;
+  // let newIndex = index - 1;
+  // console.log(newIndex);
 
-    e.preventDefault();
-    updateDoc(docRef, {
-      firstName: "firstName",
-      lastName: "lastName",
-      age: "age",
-      gender: "gender",
-      religion: "religion",
-      Profession: "Profession",
-      region: "region",
-      ethinity: "ethinity",
-      civilState: "civilState",
-      height: "height",
-    });
-    console.log(userId);
+  const [firstName, setFirstName] = useState(data.firstName);
+  // useEffect(() => {
+  //   setFirstName(data.firstName);
+  // }, [data.firstName]);
+
+  const [lastName, setLastName] = useState(data.lastName);
+  // useEffect(() => {
+  //   setLastName(data.lastName);
+  // }, [data.lastName]);
+  const [age, setAge] = useState(data.age);
+  // useEffect(() => {
+  //   setAge(data.age);
+  // }, [data.age]);
+  const [gender, setGender] = useState(genderOptions[0]);
+  // useEffect(() => {
+  //   setGender(data.gender.label);
+  // }, [data.gender.label]);
+
+  const [religion, setReligion] = useState(religionOptions[0]);
+  const [Profession, setProfession] = useState(data.Profession);
+
+  const [region, setRegion] = useState(data.region);
+  const [ethinity, setEthinity] = useState(ethinityOptions[0]);
+  const [civilState, setCivilState] = useState(civilStateOptions[1]);
+  const [height, setHeight] = useState(data.height);
+  useEffect(() => {
+    setFirstName(data.firstName);
+    setLastName(data.lastName);
+    setAge(data.age);
+    setProfession(data.Profession);
+    setRegion(data.region);
+    setHeight(data.height);
+    // setGender(data.genderOptions[newIndex]);
+  }, [
+    data.firstName,
+    data.lastName,
+    data.age,
+    data.Profession,
+    data.height,
+    data.region,
+  ]);
+
+  const deleteUserHandler = async () => {
+    const user = auth.currentUser;
+    try {
+      await deleteDoc(doc(db, "users", user.uid));
+    } catch (err) {
+      console.log("err:" + err);
+    }
+    try {
+      await deleteUser(user);
+    } catch (err) {
+      console.log("err:" + err);
+    }
+    signOut(auth).then(navigate("/Login"));
+    console.log("signout");
+
+    console.log(user.uid);
   };
 
-  console.log(userId);
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    console.log("onSubmit");
+    const user = auth.currentUser.uid;
+    const docRef = doc(db, "users", user);
+    console.log("user");
+    e.preventDefault();
+    updateDoc(docRef, {
+      firstName: firstName,
+      lastName: lastName,
+      age: age,
+      gender: gender,
+      religion: religion,
+      Profession: Profession,
+      region: region,
+      ethinity: ethinity,
+      civilState: civilState,
+      height: height,
+    });
+  };
+
+  console.log(firstName);
   return (
     <>
       <SectionCard className="AaboutUsMargin">
@@ -125,8 +190,7 @@ const EditProfile = () => {
                     <Typography>First Name</Typography>
                     <TextField
                       size="small"
-                      label="firstName"
-                      placeholder="firstName"
+                      // label="firstName"
                       sx={{ width: "60%" }}
                       required
                       onChange={(e) => setFirstName(e.target.value)}
@@ -141,8 +205,7 @@ const EditProfile = () => {
                     <Typography>Last name</Typography>
                     <TextField
                       size="small"
-                      label="lastName"
-                      placeholder="lastName"
+                      // label="lastName"
                       sx={{ width: "60%" }}
                       required
                       onChange={(e) => setLastName(e.target.value)}
@@ -157,8 +220,7 @@ const EditProfile = () => {
                     <Typography>Age</Typography>
                     <TextField
                       size="small"
-                      label="Age"
-                      placeholder="Age"
+                      // label="Age"
                       sx={{ width: "60%" }}
                       required
                       onChange={(e) => setAge(e.target.value)}
@@ -173,8 +235,7 @@ const EditProfile = () => {
                     <Typography>Profession</Typography>
                     <TextField
                       size="small"
-                      label="Profession"
-                      placeholder="Age"
+                      // label="Profession"
                       sx={{ width: "60%" }}
                       required
                       onChange={(e) => setProfession(e.target.value)}
@@ -189,8 +250,6 @@ const EditProfile = () => {
                     <Typography>Region</Typography>
                     <TextField
                       size="small"
-                      label="Region"
-                      placeholder="Age"
                       sx={{ width: "60%" }}
                       required
                       onChange={(e) => setRegion(e.target.value)}
@@ -252,8 +311,6 @@ const EditProfile = () => {
                     <Typography>Height</Typography>
                     <TextField
                       size="small"
-                      label="Height"
-                      placeholder="Height"
                       sx={{ width: "60%" }}
                       required
                       onChange={(e) => setHeight(e.target.value)}
@@ -314,9 +371,21 @@ const EditProfile = () => {
                 display: "flex",
                 justifyContent: "right",
                 marginTop: "20px",
+                marginLeft: "10px",
               }}
             >
-              <Button variant="contained">Update Account</Button>
+              <Button variant="contained" type="submit">
+                Update Account
+              </Button>
+              <DeleteForeverIcon
+                fontSize="large"
+                sx={deleteIcon}
+                onClick={() => {
+                  deleteUserHandler();
+                }}
+              >
+                delete
+              </DeleteForeverIcon>
             </Box>
           </Box>
         </form>

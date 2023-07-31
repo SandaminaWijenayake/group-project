@@ -13,7 +13,7 @@ import {
 import PersonIcon from "@mui/icons-material/Person";
 import SectionCard from "../UI/SectionCard";
 import { db } from "../config/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import Message from "./Message";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobleContext } from "../GlobleState/GlobleState";
@@ -59,11 +59,9 @@ const Signup = () => {
   const [messageEmail, setMessageEmail] = useState("");
   const [messageUserCreated, setMessageUserCreated] = useState("");
   const [error, setError] = useState(false);
-  // const [userid, setUserid] = useState("");
 
   const { setIsSignedIn } = useContext(GlobleContext);
   const navigate = useNavigate();
-  const userCollection = collection(db, "users");
 
   const onSUbmitHandler = async (e) => {
     e.preventDefault();
@@ -83,50 +81,56 @@ const Signup = () => {
     }
     if (password.length >= 6 && email.includes("@") && email.includes(".com")) {
       try {
-        await createUserWithEmailAndPassword(auth, email, password).then(
-          (userCredential) => {
-            // Signed in
-
-            addDoc(userCollection, {
-              userid: userCredential.user.uid,
-              firstName: firstName,
-              lastName: lastName,
-              age: age,
-              gender: gender,
-              religion: religion,
-              Profession: Profession,
-              region: region,
-              ethinity: ethinity,
-              civilState: civilState,
-              height: height,
-            }).then(setMessageUserCreated("User Created"));
-            // setError(true);
-            setIsSignedIn(true);
-            navigate("/Login");
-
-            console.log(userCredential);
-            console.log(userCredential.user);
-            console.log(userCredential.user.uid);
-
-            // ...
-          }
+        //create user
+        let result = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
         );
-      } catch (err) {
-        console.error(err);
-      }
+        const user = result.user.uid;
+        console.log(user);
 
-      // console.log(userid);
-
-      try {
-        await addDoc(userCollection, {}).then(
-          setMessageUserCreated("User Created")
-        );
-        // setError(true);
+        setDoc(doc(db, "users", user), {
+          firstName: firstName,
+          lastName: lastName,
+          age: age,
+          gender: gender,
+          religion: religion,
+          Profession: Profession,
+          region: region,
+          ethinity: ethinity,
+          civilState: civilState,
+          height: height,
+        });
         setIsSignedIn(true);
         navigate("/Login");
       } catch (err) {
         console.error(err);
       }
+      try {
+        // setError(true);
+      } catch (err) {
+        console.error(err);
+      }
+      // try {
+      //   setDoc(doc(db, 'users', logedUserId), {
+      //     firstName: firstName,
+      //     lastName: lastName,
+      //     age: age,
+      //     gender: gender,
+      //     religion: religion,
+      //     Profession: Profession,
+      //     region: region,
+      //     ethinity: ethinity,
+      //     civilState: civilState,
+      //     height: height,
+      //   });
+      //   // setError(true);
+      //   setIsSignedIn(true);
+      //   navigate('/Login');
+      // } catch (err) {
+      //   console.error(err);
+      // }
     }
   };
 
@@ -170,7 +174,6 @@ const Signup = () => {
               value={firstName}
             />
           </div>
-
           <div className="fieldmargin">
             <TextField
               label="Last Name"
@@ -203,7 +206,6 @@ const Signup = () => {
               required
             />
           </div>
-
           <div className="fieldmargin">
             <TextField
               type="number"
@@ -215,7 +217,6 @@ const Signup = () => {
               onChange={(e) => setAge(e.target.value)}
             />
           </div>
-
           <div className="fieldmargin">
             {/* <FormControl sx={{ minWidth: 200 }}>
             <InputLabel id="demo-controlled-open-select-label">
@@ -244,7 +245,6 @@ const Signup = () => {
               renderInput={(params) => <TextField {...params} label="Gender" />}
             />
           </div>
-
           <div className="fieldmargin">
             {/* <FormControl sx={{ minWidth: 200 }}>
             <InputLabel id="demo-controlled-open-select-label">
@@ -276,7 +276,6 @@ const Signup = () => {
               )}
             />
           </div>
-
           <div className="fieldmargin">
             <TextField
               label="Height"

@@ -45,7 +45,7 @@ const Login = () => {
       }
     );
     return unsubscribe;
-  }, []);
+  }, [navigate, setIsSignedIn]);
 
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px 0" };

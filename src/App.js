@@ -37,7 +37,7 @@ const App = () => {
               />
 
               <Route
-                path={"/Card/"}
+                path={"/Card/:id"}
                 element={
                   <Protected isSignedIn={isSignedIn}>
                     <UserCardFull />
