@@ -29,41 +29,41 @@ const Footer = () => {
 
             <div className="lower ms-5">
               <div className="topic">Contact us</div>
-              <a href={url} class="footerLinks">
-                <i class="fas fa-phone-volume"></i>+94 071 345 1260
+              <a href={url} className="footerLinks">
+                <i className="fas fa-phone-volume"></i>+94 071 345 1260
               </a>
               <div className="emai">
-                <a href={url} class="footerLinks">
-                  <i class="fas fa-envelope"></i>Kapuwa@gmail.lk
+                <a href={url} className="footerLinks">
+                  <i className="fas fa-envelope"></i>Kapuwa@gmail.lk
                 </a>
               </div>
             </div>
           </div>
 
           <div className="middle box">
-            <div class="topic">Our Services</div>
+            <div className="topic">Our Services</div>
             <div>
-              <a href={url} class="footerLinks">
+              <a href={url} className="footerLinks">
                 Privacy Policy
               </a>
             </div>
             <div>
-              <a href={url} class="footerLinks">
+              <a href={url} className="footerLinks">
                 Blog
               </a>
             </div>
             <div>
-              <a href={url} class="footerLinks">
+              <a href={url} className="footerLinks">
                 Help
               </a>
             </div>
             <div>
-              <a href={url} class="footerLinks">
+              <a href={url} className="footerLinks">
                 Monthly Events
               </a>
             </div>
             <div>
-              <a href={url} class="footerLinks">
+              <a href={url} className="footerLinks">
                 Term of Service
               </a>
             </div>

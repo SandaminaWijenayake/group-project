@@ -10,7 +10,7 @@ function Card({ items }) {
       to={`/Card/${items.id}`}
     >
       <div className="cardContainer">
-        <Container container>
+        <Container>
           <div className="cardName">
             <h1>{items.firstName + " " + items.lastName}</h1>
             <p>{items.region}, Sri Lanka</p>
