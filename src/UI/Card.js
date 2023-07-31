@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Grid, Box, Container } from "@mui/material";
 import "./Card.css";
 import { Link } from "react-router-dom";
-import { doc, deleteDoc } from "firebase/firestore";
-import { db } from "../config/firebase";
 
 function Card({ items }) {
   return (
@@ -14,7 +12,7 @@ function Card({ items }) {
       <div className="cardContainer">
         <Container container>
           <div className="cardName">
-            <h1>FirstName: {items.firstName}</h1>
+            <h1>{items.firstName + " " + items.lastName}</h1>
             <p>{items.region}, Sri Lanka</p>
           </div>
           <div className="cardDetails">

@@ -19,16 +19,6 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const city = "Moratuwa";
-const profession = "Software Engineer";
-const fullName = "Emma watson";
-const Age = "28";
-const religen = "Buddist";
-const height = "5'10";
-const Ethnicity = "Sinhalese";
-const civilState = "Married";
-const gender = "Female";
-
 const itemsStyleGray = {
   backgroundColor: "#F2F2F2",
   borderRadius: "0px",
@@ -76,7 +66,7 @@ const UserCardFull = () => {
   //   };
   // }, []);
 
-  const [fulldata, setFullData] = useState([]);
+  // const [fulldata, setFullData] = useState([]);
 
   let d = data.filter((ele) => ele.id === id);
 
@@ -106,7 +96,9 @@ const UserCardFull = () => {
                     </div>
                     <div>
                       {d.length !== 0 && console.log(d[0].firstName)}
-                      <p>{d.length !== 0 && d[0].firstName}</p>
+                      <p>
+                        {d.length !== 0 && d[0].firstName + " " + d[0].lastName}
+                      </p>
                     </div>
                   </div>
                 </Item>
