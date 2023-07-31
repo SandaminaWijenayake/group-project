@@ -113,22 +113,22 @@ const EditProfile = () => {
   const [ethinity, setEthinity] = useState(ethinityOptions[0]);
   const [civilState, setCivilState] = useState(civilStateOptions[1]);
   const [height, setHeight] = useState(data.height);
-  // useEffect(() => {
-  //   setFirstName(data.firstName);
-  //   setLastName(data.lastName);
-  //   setAge(data.age);
-  //   setProfession(data.Profession);
-  //   setRegion(data.region);
-  //   setHeight(data.height);
-  //   // setGender(data.genderOptions[newIndex]);
-  // }, [
-  //   data.firstName,
-  //   data.lastName,
-  //   data.age,
-  //   data.Profession,
-  //   data.height,
-  //   data.region,
-  // ]);
+  useEffect(() => {
+    setFirstName(data.firstName);
+    setLastName(data.lastName);
+    setAge(data.age);
+    setProfession(data.Profession);
+    setRegion(data.region);
+    setHeight(data.height);
+    // setGender(data.genderOptions[newIndex]);
+  }, [
+    data.firstName,
+    data.lastName,
+    data.age,
+    data.Profession,
+    data.height,
+    data.region,
+  ]);
 
   const deleteUserHandler = async () => {
     const user = auth.currentUser;
