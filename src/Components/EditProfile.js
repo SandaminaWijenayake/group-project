@@ -73,7 +73,6 @@ const EditProfile = () => {
   const [data, setData] = useState([]);
   const [message, setMessageAuth] = useState("");
   const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   const user = auth.currentUser;
 
