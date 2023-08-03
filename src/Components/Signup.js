@@ -37,9 +37,8 @@ const ethinityOptions = [
 ];
 
 const civilStateOptions = [
-  { label: "Married", id: 1 },
-  { label: "Unmarried", id: 2 },
-  { label: "Devorded", id: 3 },
+  { label: "Devorded", id: 1 },
+  { label: "Never Married", id: 2 },
 ];
 
 const Signup = () => {

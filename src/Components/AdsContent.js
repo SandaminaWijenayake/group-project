@@ -11,7 +11,44 @@ import WomanIcon from "@mui/icons-material/Woman";
 import SectionCard from "../UI/SectionCard";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormGroup from "@mui/material/FormGroup";
+import Checkbox from "@mui/material/Checkbox";
 
+const top100Films = [
+  {
+    label: "20 - 25",
+  },
+  {
+    label: "25 - 30",
+  },
+  {
+    label: "30 - 35",
+  },
+  {
+    label: "35 - 40",
+  },
+  {
+    label: "45 - 50",
+  },
+];
+
+// const ethinityOptions = [
+//   { label: "Sinhalese", id: 1 },
+//   { label: "Tamils", id: 2 },
+//   { label: "Burgher", id: 3 },
+//   { label: "Malays", id: 4 },
+// ];
+
+// const religionOptions = [
+//   { label: "buddhism", id: 1 },
+//   { label: "muslims", id: 2 },
+//   { label: "christians", id: 3 },
+//   { label: "hindu", id: 4 },
+// ];
 const options = [
   { label: "Last First", id: 1 },
   { label: "Oldest First", id: 2 },
@@ -87,13 +124,18 @@ const AdsContent = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={top100Films}
+                sx={{ width: 200 }}
+                size="small"
+                renderInput={(params) => <TextField {...params} label="Age" />}
+              />
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        {/* <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3a-content"
@@ -101,7 +143,7 @@ const AdsContent = () => {
           >
             <Typography>Region / District</Typography>
           </AccordionSummary>
-        </Accordion>
+        </Accordion> */}
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -111,11 +153,15 @@ const AdsContent = () => {
             <Typography>Ethnicity</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox defaultChecked />}
+                label="Sinhalese"
+              />
+              <FormControlLabel label="Tamils" control={<Checkbox />} />
+              <FormControlLabel control={<Checkbox />} label="Burgher" />
+              <FormControlLabel control={<Checkbox />} label="Malays" />
+            </FormGroup>
           </AccordionDetails>
         </Accordion>
         <Accordion>
@@ -127,11 +173,15 @@ const AdsContent = () => {
             <Typography>Religion</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox defaultChecked />}
+                label="buddhism"
+              />
+              <FormControlLabel label="christians" control={<Checkbox />} />
+              <FormControlLabel control={<Checkbox />} label="muslims" />
+              <FormControlLabel control={<Checkbox />} label="hindu" />
+            </FormGroup>
           </AccordionDetails>
         </Accordion>
         <Accordion>
@@ -143,13 +193,27 @@ const AdsContent = () => {
             <Typography>Civil Status</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
+            <FormControl>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="Never Married"
+                  control={<Radio />}
+                  label="Never Married"
+                  checked
+                />
+                <FormControlLabel
+                  value="Devorced"
+                  control={<Radio />}
+                  label="Devorced"
+                />
+              </RadioGroup>
+            </FormControl>
           </AccordionDetails>
-        </Accordion>{" "}
+        </Accordion>
       </div>
 
       <div className="adsContent">

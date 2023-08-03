@@ -62,6 +62,9 @@ const NavBar = () => {
           color: "black",
           backgroundColor: "Black",
           padding: "10px",
+          position: "sticky",
+          top: "0",
+          zIndex: "100",
         }}
       >
         <Toolbar>
