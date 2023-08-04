@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../UI/Card";
 import "./AdsContent.css";
-import { Autocomplete, TextField, Typography } from "@mui/material";
+import { Autocomplete, TextField, Typography, colors } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -9,7 +9,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ManIcon from "@mui/icons-material/Man";
 import WomanIcon from "@mui/icons-material/Woman";
 import SectionCard from "../UI/SectionCard";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../config/firebase";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -56,8 +56,29 @@ const options = [
 
 const AdsContent = () => {
   const [data, setData] = useState([]);
+  const [manColor, setManColor] = useState(null);
+  const [womanColor, setWomanColor] = useState(null);
+
+  const manIcon = {
+    cursor: "pointer",
+    // ":hover": {
+    //   color: "rgb(125, 125, 125)",
+    // },
+    color: manColor ? "rgb(125, 125, 125)" : "black",
+    // color: womanColor ? "rgb(125, 125, 125)" : "black",
+  };
+
+  const womanIcon = {
+    cursor: "pointer",
+    // ":hover": {
+    //   color: "rgb(125, 125, 125)",
+    // },
+    // color: manColor ? "rgb(125, 125, 125)" : "black",
+    color: womanColor ? "rgb(125, 125, 125)" : "black",
+  };
 
   useEffect(() => {
+    console.log("useEffect run");
     const colRef = collection(db, "users");
     let usersdata = [];
     getDocs(colRef)
@@ -72,6 +93,40 @@ const AdsContent = () => {
         console.log(err);
       });
   }, []);
+  console.log(data);
+
+  const lookingForMan = async () => {
+    setWomanColor(false);
+    setManColor(true);
+    // const colRef = collection(db, "users");
+    const colRef = query(collection(db, "users"));
+
+    const q = query(colRef, where("gender.label", "==", "Male"));
+    let userData = [];
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+
+      userData.push({ id: doc.id, ...doc.data() });
+    });
+    return setData(userData);
+  };
+  console.log(data);
+
+  const lookingForWoman = async () => {
+    setManColor(false);
+    setWomanColor(true);
+    const colRef = collection(db, "users");
+    const q = query(colRef, where("gender.label", "==", "Female"));
+    // console.log(q);
+    let userData = [];
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      userData.push({ id: doc.id, ...doc.data() });
+    });
+    return setData(userData);
+  };
 
   var Tawk_API = Tawk_API || {},
     Tawk_LoadStart = new Date();
@@ -110,8 +165,24 @@ const AdsContent = () => {
         <div className="adsMaleFemale">
           <h4>I'm looking for</h4>
           <div>
-            {<ManIcon fontSize="large" />}
-            {<WomanIcon fontSize="large" />}
+            {
+              <ManIcon
+                fontSize="large"
+                sx={manIcon}
+                onClick={() => {
+                  lookingForMan();
+                }}
+              />
+            }
+            {
+              <WomanIcon
+                fontSize="large"
+                sx={womanIcon}
+                onClick={() => {
+                  lookingForWoman();
+                }}
+              />
+            }
           </div>
         </div>
         <Accordion>
@@ -135,15 +206,7 @@ const AdsContent = () => {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        {/* <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3a-content"
-            id="panel3a-header"
-          >
-            <Typography>Region / District</Typography>
-          </AccordionSummary>
-        </Accordion> */}
+
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
