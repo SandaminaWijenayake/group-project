@@ -62,7 +62,8 @@ const AdsContent = () => {
   const [initialState, setInitialState] = useState([]);
   const [manColor, setManColor] = useState(null);
   const [womanColor, setWomanColor] = useState(null);
-  const [currentState, setCurrentState] = useState({});
+
+  const [ethnicityCheck, setEthnicityCheck] = useState([]);
 
   const [selectAge, setSelectAge] = useState(null);
 
@@ -124,6 +125,15 @@ const AdsContent = () => {
       updatedList = updatedList.filter(
         (item) => item.gender.label === selectGender
       );
+    }
+
+    if (ethnicityCheck.length === 1) {
+      console.log("ethnicityCheck :" + ethnicityCheck);
+      console.log(ethnicityCheck);
+      updatedList = updatedList.filter((item) =>
+        ethnicityCheck.includes(item.ethinity.label)
+      );
+      // updatedList = ethnicityCheck;
     }
     // let final = selectAge?.concat(selectGender);
     // console.log("final : " + final);
@@ -211,12 +221,19 @@ const AdsContent = () => {
   useEffect(() => {
     console.log("ran");
     handleFilter();
-  }, [selectAge, selectGender]);
+  }, [selectAge, selectGender, ethnicityCheck]);
 
-  const ethnicityHandler = (value) => {
-    console.log(value);
+  const ethnicityHandler = (event) => {
+    const index = ethnicityCheck.indexOf(event.target.value);
+    if (index === -1) {
+      setEthnicityCheck([...ethnicityCheck, event.target.value]);
+    } else {
+      setEthnicityCheck(
+        ethnicityCheck.filter((item) => item !== event.target.value)
+      );
+    }
   };
-
+  console.log(ethnicityCheck);
   var Tawk_API = Tawk_API || {},
     Tawk_LoadStart = new Date();
   (function () {
@@ -309,15 +326,47 @@ const AdsContent = () => {
             <Typography>Ethnicity</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <FormGroup
-              onChange={(value) => {
-                ethnicityHandler(value);
-              }}
-            >
-              <FormControlLabel control={<Checkbox />} label="Sinhalese" />
-              <FormControlLabel label="Tamils" control={<Checkbox />} />
-              <FormControlLabel control={<Checkbox />} label="Burgher" />
-              <FormControlLabel control={<Checkbox />} label="Malays" />
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={ethnicityCheck.includes("Sinhalese")}
+                    onChange={ethnicityHandler}
+                    value="Sinhalese"
+                  />
+                }
+                label="Sinhalese"
+              />
+              <FormControlLabel
+                label="Tamils"
+                control={
+                  <Checkbox
+                    checked={ethnicityCheck.includes("Tamils")}
+                    onChange={ethnicityHandler}
+                    value="Tamils"
+                  />
+                }
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={ethnicityCheck.includes("Burgher")}
+                    onChange={ethnicityHandler}
+                    value="Burgher"
+                  />
+                }
+                label="Burgher"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={ethnicityCheck.includes("Malays")}
+                    onChange={ethnicityHandler}
+                    value="Malays"
+                  />
+                }
+                label="Malays"
+              />
             </FormGroup>
           </AccordionDetails>
         </Accordion>
