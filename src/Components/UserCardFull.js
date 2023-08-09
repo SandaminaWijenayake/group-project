@@ -161,6 +161,28 @@ const UserCardFull = () => {
                   </div>
                 </Item>
               </Grid>
+              <Grid item xs={6}>
+                <Item sx={itemStyleWhite}>
+                  <div className="userItems">
+                    <div>
+                      <h3>Religion</h3>
+                    </div>
+                    <div>{/* <p>{fulldata.gender.label}</p> */}</div>
+                    <p>{d.length !== 0 && d[0].religion.label}</p>
+                  </div>
+                </Item>
+              </Grid>
+              <Grid item xs={6}>
+                <Item sx={itemsStyleGray}>
+                  <div className="userItems">
+                    <div>
+                      <h3>Profession</h3>
+                    </div>
+                    <div>{/* <p>{fulldata.gender.label}</p> */}</div>
+                    <p>{d.length !== 0 && d[0].Profession}</p>
+                  </div>
+                </Item>
+              </Grid>
             </Grid>
           </Box>
         </div>

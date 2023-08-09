@@ -44,7 +44,7 @@ const ethinityOptions = [
 ];
 
 const civilStateOptions = [
-  { label: "Devorded", id: 1 },
+  { label: "Devorced", id: 1 },
   { label: "Never Married", id: 2 },
 ];
 
@@ -270,7 +270,7 @@ const EditProfile = () => {
               <Grid item xs={12}>
                 <Item>
                   <Box sx={editProfileItems}>
-                    <Typography>Religen</Typography>
+                    <Typography>Religion</Typography>
                     <Autocomplete
                       onChange={(e, value) => {
                         setReligion(value);

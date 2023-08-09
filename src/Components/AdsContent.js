@@ -62,8 +62,10 @@ const AdsContent = () => {
   const [initialState, setInitialState] = useState([]);
   const [manColor, setManColor] = useState(null);
   const [womanColor, setWomanColor] = useState(null);
+  const [religionChecked, setReligionChecked] = useState([]);
 
   const [ethnicityCheck, setEthnicityCheck] = useState([]);
+  const [checkCivilState, setCheckCivilState] = useState(null);
 
   const [selectAge, setSelectAge] = useState(null);
 
@@ -134,6 +136,20 @@ const AdsContent = () => {
         ethnicityCheck.includes(item.ethinity.label)
       );
       // updatedList = ethnicityCheck;
+    }
+
+    if (religionChecked.length === 1) {
+      console.log("religion :" + religionChecked);
+      console.log(ethnicityCheck);
+      updatedList = updatedList.filter((item) =>
+        religionChecked.includes(item.religion.label)
+      );
+    }
+
+    if (checkCivilState) {
+      updatedList = updatedList.filter(
+        (item) => item.civilState.label === checkCivilState
+      );
     }
     // let final = selectAge?.concat(selectGender);
     // console.log("final : " + final);
@@ -221,7 +237,13 @@ const AdsContent = () => {
   useEffect(() => {
     console.log("ran");
     handleFilter();
-  }, [selectAge, selectGender, ethnicityCheck]);
+  }, [
+    selectAge,
+    selectGender,
+    ethnicityCheck,
+    religionChecked,
+    checkCivilState,
+  ]);
 
   const ethnicityHandler = (event) => {
     const index = ethnicityCheck.indexOf(event.target.value);
@@ -233,7 +255,24 @@ const AdsContent = () => {
       );
     }
   };
-  console.log(ethnicityCheck);
+
+  const religionFilterHandler = (event) => {
+    const index = religionChecked.indexOf(event.target.value);
+    if (index === -1) {
+      setReligionChecked([...religionChecked, event.target.value]);
+    } else {
+      setReligionChecked(
+        religionChecked.filter((item) => item !== event.target.value)
+      );
+    }
+  };
+
+  const handleCivilState = (event) => {
+    setCheckCivilState(event.target.value);
+  };
+
+  console.log(checkCivilState);
+
   var Tawk_API = Tawk_API || {},
     Tawk_LoadStart = new Date();
   (function () {
@@ -381,12 +420,45 @@ const AdsContent = () => {
           <AccordionDetails>
             <FormGroup>
               <FormControlLabel
-                control={<Checkbox defaultChecked />}
+                control={
+                  <Checkbox
+                    value="buddhism"
+                    checked={religionChecked.includes("buddhism")}
+                    onChange={religionFilterHandler}
+                  />
+                }
                 label="buddhism"
               />
-              <FormControlLabel label="christians" control={<Checkbox />} />
-              <FormControlLabel control={<Checkbox />} label="muslims" />
-              <FormControlLabel control={<Checkbox />} label="hindu" />
+              <FormControlLabel
+                label="christians"
+                control={
+                  <Checkbox
+                    value="christians"
+                    checked={religionChecked.includes("christians")}
+                    onChange={religionFilterHandler}
+                  />
+                }
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    value="muslims"
+                    checked={religionChecked.includes("muslims")}
+                    onChange={religionFilterHandler}
+                  />
+                }
+                label="muslims"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    value="hindu"
+                    checked={religionChecked.includes("hindu")}
+                    onChange={religionFilterHandler}
+                  />
+                }
+                label="hindu"
+              />
             </FormGroup>
           </AccordionDetails>
         </Accordion>
@@ -400,16 +472,11 @@ const AdsContent = () => {
           </AccordionSummary>
           <AccordionDetails>
             <FormControl>
-              <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="female"
-                name="radio-buttons-group"
-              >
+              <RadioGroup value={checkCivilState} onChange={handleCivilState}>
                 <FormControlLabel
                   value="Never Married"
                   control={<Radio />}
                   label="Never Married"
-                  checked
                 />
                 <FormControlLabel
                   value="Devorced"

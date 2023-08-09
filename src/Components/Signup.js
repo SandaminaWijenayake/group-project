@@ -9,6 +9,7 @@ import {
   Button,
   Autocomplete,
   Typography,
+  Stack,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import SectionCard from "../UI/SectionCard";
@@ -364,6 +365,14 @@ const Signup = () => {
                 <TextField {...params} label="Civil State" />
               )}
             />
+          </div>
+          <div className="fieldmargin">
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <Button variant="contained" component="label">
+                Upload an Image
+                <input hidden accept="image/*" multiple type="file" />
+              </Button>
+            </Stack>
           </div>
 
           <Button
