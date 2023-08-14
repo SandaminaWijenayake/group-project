@@ -9,7 +9,6 @@ import {
   Button,
   Autocomplete,
   Typography,
-  Stack,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import SectionCard from "../UI/SectionCard";
@@ -104,7 +103,9 @@ const Signup = () => {
         setIsSignedIn(true);
         navigate("/Login");
       } catch (err) {
-        console.error(err);
+        setError(true);
+        setMessageEmail("email-already-in-use");
+        // console.log(err);
       }
       try {
         // setError(true);
@@ -366,14 +367,14 @@ const Signup = () => {
               )}
             />
           </div>
-          <div className="fieldmargin">
+          {/* <div className="fieldmargin">
             <Stack direction="row" alignItems="center" spacing={2}>
               <Button variant="contained" component="label">
                 Upload an Image
                 <input hidden accept="image/*" multiple type="file" />
               </Button>
             </Stack>
-          </div>
+          </div> */}
 
           <Button
             type="submit"
