@@ -105,7 +105,6 @@ const Signup = () => {
         navigate("/Login");
       } catch (err) {
         console.error(err);
-        <h1>hi</h1>
       }
       try {
         // setError(true);
