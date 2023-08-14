@@ -288,10 +288,10 @@ const AdsContent = () => {
   return (
     <SectionCard className="mainContainer">
       <div className="filterPanel">
-        <div className="adsClear">
+        {/* <div className="adsClear">
           <p>Clear All</p>
-        </div>
-        <div className="adsSort">
+        </div> */}
+        {/* <div className="adsSort">
           <h3>Sort By</h3>
           <Autocomplete
             id="size-small-standard"
@@ -306,7 +306,7 @@ const AdsContent = () => {
               />
             )}
           />
-        </div>
+        </div> */}
         <div className="adsMaleFemale">
           <h4>I'm looking for</h4>
           <div>
