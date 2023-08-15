@@ -379,7 +379,6 @@ const Signup = () => {
               </Button>
             </Stack>
           </div> */}
-          </div> */}
 
           <Button
             type="submit"
