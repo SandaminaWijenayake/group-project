@@ -106,6 +106,9 @@ const Signup = () => {
         setError(true);
         setMessageEmail("email-already-in-use");
         // console.log(err);
+        setError(true);
+        setMessageEmail("email-already-in-use");
+        // console.log(err);
       }
       try {
         // setError(true);
@@ -368,12 +371,14 @@ const Signup = () => {
             />
           </div>
           {/* <div className="fieldmargin">
+          {/* <div className="fieldmargin">
             <Stack direction="row" alignItems="center" spacing={2}>
               <Button variant="contained" component="label">
                 Upload an Image
                 <input hidden accept="image/*" multiple type="file" />
               </Button>
             </Stack>
+          </div> */}
           </div> */}
 
           <Button
